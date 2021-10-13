@@ -18,11 +18,8 @@ object ErrorDominio {
   final case class ValorObligatorio(mensaje: String) extends DetalleErrorDominio
 
   def noExiste(mensaje: String = "Elemento no existe"): DetalleErrorDominio = ElementoNoExiste(mensaje)
-  def noExisteEstudiante(mensaje: String = "Estudiante no existe"): DetalleErrorDominio = ElementoNoExiste(mensaje)
-  def noExisteProfesor(mensaje: String = "Profesor no existe"): DetalleErrorDominio = ElementoNoExiste(mensaje)
 
   def existe(mensaje: String = "Elemento duplicado"): DetalleErrorDominio = ElementoDuplicado(mensaje)
-  def existeAsignatura(mensaje: String = "Asignatura duplicada"): DetalleErrorDominio = ElementoDuplicado(mensaje)
 
   def longitudInvalida(mensaje: String = "Longitud invalida"): DetalleErrorDominio = LongitudInvalida(mensaje)
   def valorInvalido(mensaje: String = "Valor invalido"): DetalleErrorDominio = ValorInvalido(mensaje)

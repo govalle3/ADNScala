@@ -1,5 +1,6 @@
 package infraestructura.persistencia.repositorio
 
+import cats.implicits.catsSyntaxEitherId
 import dominio.modelo.Libro
 import dominio.persistencia.repositorio.RepositorioLibro
 import infraestructura.persistencia.dao.DaoLibroImpl
@@ -37,9 +38,10 @@ class RepositorioLibroImpl @Inject()(val dbConfigProvider: DatabaseConfigProvide
       objetoEliminar <- db.run(q.result.headOption)
       _ <- db.run(q.delete)
     } yield objetoEliminar
+
   }
 
-  override def existe(id: String): Future[Boolean] = {
+  override def existe(id: String): Future[Boolean]= {
     val q = libroQuery.filter(_.id === id).exists
     db.run(q.result)
   }

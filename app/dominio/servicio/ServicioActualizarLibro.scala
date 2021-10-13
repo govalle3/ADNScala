@@ -1,7 +1,5 @@
 package dominio.servicio
 
-import cats.implicits.catsSyntaxEitherId
-import dominio.errores.{DetalleErrorDominio, ErrorDominio}
 import dominio.modelo.Libro
 import dominio.persistencia.repositorio.RepositorioLibro
 import javax.inject.Inject
@@ -18,10 +16,10 @@ class ServicioActualizarLibro @Inject()(repositorioLibro: RepositorioLibro)
     } yield libro
   }
 
-    def validarSiExisteLibro(libro: Libro): Future[Either[Boolean, DetalleErrorDominio]] = {
-      repositorioLibro.existe(libro.id).map {
-        case false => ErrorDominio.noExiste("Libro No existe").asRight
-        case true => true.asLeft
+    def validarSiExisteLibro(libro: Libro): Future[Boolean] = {
+      repositorioLibro.existe(libro.id).flatMap {
+        case true => Future.failed(throw new IllegalArgumentException(s"Libro con id:${libro.id} no existente"))
+        case false => Future.successful(false)
       }
     }
   }

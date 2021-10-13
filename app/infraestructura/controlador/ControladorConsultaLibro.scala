@@ -15,8 +15,6 @@ class ControladorConsultaLibro @Inject()(
                                           manejadorListarLibro: ManejadorListarLibro)
   extends AbstractController(cc) with FormateadoresAplicacion {
 
-  val logger: Logger.ALogger = play.Logger.of("ControladorConsultaLibro")
-
   def listar(): Action[AnyContent] = Action.async {
     manejadorListarLibro.ejecutar()
       .map(libros => {
@@ -25,11 +23,6 @@ class ControladorConsultaLibro @Inject()(
           "message" -> "Libros listados")
         Ok(j)
       })
-      .recover {
-        case ex =>
-          logger.error("Falló en listar", ex)
-          InternalServerError(s"Hubo un error: ${ex.getLocalizedMessage} ")
-      }
   }
 
   def consultar(id: String): Action[AnyContent] = Action.async {
@@ -40,11 +33,6 @@ class ControladorConsultaLibro @Inject()(
           "message" -> "Libro listado")
         Ok(j)
       })
-      .recover {
-        case ex =>
-          logger.error("Falló en consultar", ex)
-          InternalServerError(s"Hubo un error: ${ex.getLocalizedMessage} ")
-      }
   }
 
 

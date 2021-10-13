@@ -3,6 +3,7 @@ package dominio.modelo
 import java.sql.Date
 
 
+
 case class Libro(
                   id: String,
                   titulo: String,
@@ -11,6 +12,10 @@ case class Libro(
                   editorial: String,
                   paginas: Option[Int]
                 )
+
+
+
+
 
 
 

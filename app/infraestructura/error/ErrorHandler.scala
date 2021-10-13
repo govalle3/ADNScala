@@ -17,10 +17,8 @@ class ErrorHandler @Inject() (
                                sourceMapper: OptionalSourceMapper,
                                router: Provider[Router]) extends DefaultHttpErrorHandler(env, config, sourceMapper, router) {
 
+
   override def onServerError(request: RequestHeader, exception: Throwable): Future[Result] = {
-
-   // val logger: Logger.ALogger = play.Logger.of("ControladorComandoLibro")
-
     //val message = s"Internal server error, for (${request.method}) [${request.uri}]"
     //Logger.logger.error(message, exception)
     val result = exception match {
