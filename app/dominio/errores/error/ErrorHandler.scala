@@ -1,6 +1,6 @@
-package infraestructura.error
+package dominio.errores.error
 
-import infraestructura.error.Error._
+import dominio.errores.error.Error._
 import javax.inject._
 import play.api._
 import play.api.http.DefaultHttpErrorHandler

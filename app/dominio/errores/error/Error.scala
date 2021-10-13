@@ -1,4 +1,4 @@
-package infraestructura.error
+package dominio.errores.error
 
 import java.text.SimpleDateFormat
 import java.util.Calendar

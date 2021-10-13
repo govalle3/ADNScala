@@ -11,6 +11,7 @@ val catsVersion = "2.1.1"
 libraryDependencies += guice
 libraryDependencies += "org.scalatestplus.play" %% "scalatestplus-play" % "4.0.3" % Test
 libraryDependencies += "com.typesafe.play" %% "play-slick" % "4.0.2"
+
 libraryDependencies += "org.xerial" % "sqlite-jdbc" % "3.36.0.2"
 libraryDependencies += "joda-time" % "joda-time" % "2.10.6"
 libraryDependencies += "javax.inject" % "javax.inject" % "1"

@@ -1,9 +1,8 @@
-package dominio.errores
-
+package dominio.errores.error
 
 sealed trait ErrorDominio
 
-final case class ErroresDominio(errores: DetalleErrorDominio) extends ErrorDominio
+
 
 sealed trait DetalleErrorDominio extends ErrorDominio {
   val mensaje: String
@@ -18,8 +17,7 @@ object ErrorDominio {
   final case class ValorObligatorio(mensaje: String) extends DetalleErrorDominio
 
   def noExiste(mensaje: String = "Elemento no existe"): DetalleErrorDominio = ElementoNoExiste(mensaje)
-
-  def existe(mensaje: String = "Elemento duplicado"): DetalleErrorDominio = ElementoDuplicado(mensaje)
+    def existe(mensaje: String = "Elemento duplicado"): DetalleErrorDominio = ElementoDuplicado(mensaje)
 
   def longitudInvalida(mensaje: String = "Longitud invalida"): DetalleErrorDominio = LongitudInvalida(mensaje)
   def valorInvalido(mensaje: String = "Valor invalido"): DetalleErrorDominio = ValorInvalido(mensaje)

@@ -1,10 +1,5 @@
 package dominio.errores.errores2
 
-import play.api.mvc.Results.Status
-import play.api.mvc.{RequestHeader, Result}
-
-import scala.concurrent.Future
-
 sealed trait Errores
 
 sealed trait Detalle extends Errores {
@@ -12,14 +7,10 @@ sealed trait Detalle extends Errores {
 }
 
 object Errores {
-  final case class ValorObligatorio(mensaje: String) extends Detalle
 
-  def valorObligatorio(mensaje: String = "el campo debe ser obligatorio"): Detalle = ValorObligatorio(mensaje)
+  final case class ValorExistente(mensaje: String) extends Detalle
 
-  def error(request: RequestHeader, statusCode: Int, message: String): Future[Result] = {
-    Future.successful(
-      Status(statusCode)("A ocurrido un error durante el proceso: " + message)
-    )
-  }
+  def valorExistente(mensaje: String = "elemento existente"): Detalle = ValorExistente(mensaje)
+
 }
 

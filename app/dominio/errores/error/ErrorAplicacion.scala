@@ -1,4 +1,4 @@
-package infraestructura.error
+package dominio.errores.error
 
 trait TipoError extends Product with Serializable
 

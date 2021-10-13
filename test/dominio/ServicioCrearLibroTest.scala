@@ -5,7 +5,7 @@ import java.sql.Date
 import cats.data.EitherT
 import cats.implicits._
 import cats.implicits.catsSyntaxEitherId
-import dominio.errores.{DetalleErrorDominio, ErrorDominio}
+import dominio.errores.DetalleErrorDominio
 import dominio.modelo.Libro
 import dominio.persistencia.repositorio.RepositorioLibro
 import dominio.servicio.ServicioCrearLibro

@@ -1,5 +1,9 @@
 package dominio.modelo
 
+import cats.data.ValidatedNel
+import cats.implicits.catsSyntaxEitherId
+import dominio.errores.errores2.{Detalle, Errores}
+
 object Validador {
 
   def valorNombreObligatorio(nombre: String, mensaje: String): Boolean = {
@@ -9,6 +13,7 @@ object Validador {
     } else {
       false
     }
+
   }
 
     def valorAutorObligatorio(autor: String, mensaje: String): Boolean = {

@@ -5,7 +5,7 @@ import java.sql.Date
 case class ComandoLibro(
                          id: String,
                          titulo: String,
-                         fechaPublicacion: Date,
+                         fechaPublicacion: Option[Date],
                          autor: String,
                          editorial: String,
                          paginas: Option[Int]

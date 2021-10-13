@@ -15,7 +15,7 @@ trait Tablas {
 
     def id: Rep[String] = column[String]("ID", O.PrimaryKey)
     def titulo: Rep[String] = column[String]("TITULO")
-    def fechaPublicacion: Rep[Date] = column[Date]("PUBLICACION")
+    def fechaPublicacion: Rep[Option[Date]] = column[Option[Date]]("PUBLICACION")
     def autor: Rep[String] = column[String]("AUTOR")
     def editorial: Rep[String] = column[String]("EDITORIAL")
     def paginas: Rep[Option[Int]] = column[Option[Int]]("PAGINAS")
