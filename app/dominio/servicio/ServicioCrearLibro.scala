@@ -12,11 +12,10 @@ class ServicioCrearLibro @Inject()(repositorioLibro: RepositorioLibro)
                                   (implicit ec: ExecutionContext) {
 
   def crearLibro(libro: Libro): Future[Option[Libro]] = {
-
     val res = validarSiExisteLibro(libro)
     val res2 = res.flatMap {
-      case Left(errores) => Future.successful(None)
-      case Right(boolean: Boolean) => repositorioLibro.insertar(libro)
+      case Left(_) => Future.successful(None)
+      case Right(_) => repositorioLibro.insertar(libro)
     }
     res2
   }
@@ -27,8 +26,5 @@ class ServicioCrearLibro @Inject()(repositorioLibro: RepositorioLibro)
       case false => Future.successful(false.asRight)
     })
   }
-
-
-
 
 }

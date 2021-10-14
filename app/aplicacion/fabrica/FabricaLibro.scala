@@ -1,9 +1,7 @@
 package aplicacion.fabrica
 
 import aplicacion.comando.ComandoLibro
-import dominio.errores.error.ErrorDominio
 import dominio.modelo.{Libro, Validador}
-import monix.eval.Task
 
 object FabricaLibro {
 
