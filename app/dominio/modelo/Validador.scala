@@ -1,34 +1,32 @@
 package dominio.modelo
 
-import cats.data.ValidatedNel
 import cats.implicits.catsSyntaxEitherId
-import dominio.errores.errores2.{Detalle, Errores}
+import dominio.errores.Errores
 
 object Validador {
 
-  def valorNombreObligatorio(nombre: String, mensaje: String): Boolean = {
-
-    if (nombre.isEmpty) {
-      throw new IllegalArgumentException(mensaje)
-    } else {
-      false
-    }
+  def valorTituloObligatorio(titulo: String, mensaje: String): Either[Errores, Boolean] = {
+     if (titulo.isEmpty) {
+       Errores.valorObligatorio(mensaje).asLeft
+     } else {
+       false.asRight
+     }
 
   }
 
-    def valorAutorObligatorio(autor: String, mensaje: String): Boolean = {
+    def valorAutorObligatorio(autor: String, mensaje: String): Either[Errores, Boolean] = {
       if (autor.isEmpty) {
-        throw new IllegalArgumentException(mensaje)
+        Errores.valorObligatorio(mensaje).asLeft
       } else {
-        false
+        false.asRight
       }
   }
 
-  def valorEditorialObligatorio(autor: String, mensaje: String): Boolean = {
-    if (autor.isEmpty) {
-      throw new IllegalArgumentException(mensaje)
+  def valorEditorialObligatorio(editorial: String, mensaje: String): Either[Errores, Boolean] = {
+    if (editorial.isEmpty) {
+      Errores.valorObligatorio(mensaje).asLeft
     } else {
-      false
+      false.asRight
     }
   }
 

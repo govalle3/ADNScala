@@ -1,7 +1,5 @@
 package infraestructura.persistencia.repositorio
 
-import cats.implicits.catsSyntaxEitherId
-import dominio.errores.error.ErrorDominio
 import dominio.modelo.Libro
 import dominio.persistencia.repositorio.RepositorioLibro
 import infraestructura.persistencia.dao.DaoLibroImpl

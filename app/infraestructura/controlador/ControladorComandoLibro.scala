@@ -2,6 +2,7 @@ package infraestructura.controlador
 
 import aplicacion.comando.ComandoLibro
 import aplicacion.manejador.{ManejadorActualizarLibro, ManejadorCrearLibro, ManejadorEliminarLibro}
+import dominio.errores.Errores
 import infraestructura.controlador.formateadores.FormateadoresAplicacion
 import io.swagger.annotations.{Api, ApiOperation}
 import javax.inject.Inject
@@ -26,27 +27,23 @@ class ControladorComandoLibro @Inject()(
     val validador = request.body.validate[ComandoLibro]
     validador.asEither match {
       case Left(error) => Future.successful(BadRequest(error.toString()))
-      case Right(libro) =>
-        manejadorCrearLibro.ejecutar(libro)
-          .map(libro => {
-            val j = Json.obj(
-              "data" -> libro,
-              "message" -> "Libro creado")
-            Ok(j)
-          })
+      case Right(comandoLibro) =>
+        val res = manejadorCrearLibro.ejecutar(comandoLibro)
+        res.map {
+          case Left(errores: Errores) => clasificador.clasificarError(errores)
+          case Right(value) => Ok(Json.toJson(value))
+        }
     }
   }
 
   @ApiOperation("Eliminar libro")
   def eliminar(id: String): Action[AnyContent] = Action.async {
     implicit request =>
-      manejadorEliminarLibro.ejecutar(id)
-        .map(libro => {
-          val j = Json.obj(
-            "data" -> libro,
-            "message" -> "Libro eliminado")
-          Ok(j)
-        })
+       val res = manejadorEliminarLibro.ejecutar(id)
+      res.map {
+        case Left(errores: Errores) => clasificador.clasificarError(errores)
+        case Right(value) => Ok(Json.toJson(value))
+      }
   }
 
   def actualizar(id: String): Action[JsValue] = Action.async(parse.json) {
@@ -55,13 +52,11 @@ class ControladorComandoLibro @Inject()(
       validador.asEither match {
         case Left(error) => Future.successful(BadRequest(error.toString()))
         case Right(libro) =>
-          manejadorActualizarLibro.ejecutar(id, libro)
-            .map(libro => {
-              val j = Json.obj(
-                "data" -> libro,
-                "message" -> "Libro actualizado")
-              Ok(j)
-            })
+          val res = manejadorActualizarLibro.ejecutar(id, libro)
+          res.map {
+            case Left(errores: Errores) => clasificador.clasificarError(errores)
+            case Right(value) => Ok(Json.toJson(value))
+          }
       }
   }
 

@@ -1,6 +1,5 @@
 package dominio.persistencia.repositorio
 
-import dominio.errores.error.ErrorDominio
 import dominio.modelo.Libro
 
 import scala.concurrent.Future

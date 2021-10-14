@@ -1,4 +1,4 @@
-package dominio.errores.errores2
+package dominio.errores
 
 import javax.inject.{Inject, Provider, Singleton}
 import play.api.{Configuration, Environment, OptionalSourceMapper}
